@@ -1,0 +1,8 @@
+{% extends "_layout.html" %}
+{% block body %}
+<h2 style="margin-top:0;">Action Not Available</h2>
+<table width="100%" cellpadding="6" cellspacing="0" border="1" bordercolor="#990000" bgcolor="#fde8e8">
+  <tr><td>This member's account is under a compliance hold. Opening new sub-accounts is disabled. Contact the Compliance desk (ext. 4410) if you believe this is in error.</td></tr>
+</table>
+<p><a href="/members/{{ m.member_id }}">Return to member detail</a></p>
+{% endblock %}

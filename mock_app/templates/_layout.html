@@ -1,0 +1,23 @@
+<!-- Intentionally legacy-styled markup: nested tables, no test IDs, no
+     semantic landmarks, inline styling. This mirrors the "server-rendered,
+     framesets, deeply nested tables, non-semantic markup, no test IDs"
+     surface described in the assignment brief. -->
+<html>
+<head><title>{{ title }} - CoreServ Member Admin</title></head>
+<body bgcolor="#d6d3ce" style="font-family: Tahoma, Arial, sans-serif; font-size: 13px;">
+<table width="100%" cellpadding="0" cellspacing="0" border="0" bgcolor="#003366">
+  <tr><td style="color:white; padding:6px 10px; font-weight:bold;">CoreServ Member Administration &mdash; INTERNAL USE ONLY</td></tr>
+</table>
+<table width="760" cellpadding="10" cellspacing="0" border="0" align="center" bgcolor="#ffffff">
+  <tr><td>
+    {% if flash %}
+    <table width="100%" cellpadding="6" cellspacing="0" border="1" bordercolor="#996600" bgcolor="#fff2cc">
+      <tr><td>{{ flash }}</td></tr>
+    </table>
+    <br>
+    {% endif %}
+    {% block body %}{% endblock %}
+  </td></tr>
+</table>
+</body>
+</html>

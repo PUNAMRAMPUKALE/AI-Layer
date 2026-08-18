@@ -1,0 +1,32 @@
+{% extends "_layout.html" %}
+{% block body %}
+<h2 style="margin-top:0;">Open Sub-Account &mdash; Member {{ m.member_id }} ({{ m.name }})</h2>
+{% if error %}
+<table width="100%" cellpadding="6" cellspacing="0" border="1" bordercolor="#990000" bgcolor="#fde8e8">
+  <tr><td>{{ error }}</td></tr>
+</table>
+<br>
+{% endif %}
+<table cellpadding="4" cellspacing="0" border="0">
+  <form method="POST" action="/members/{{ m.member_id }}/open-subaccount">
+  <tr>
+    <td><label for="account_type">Account Type</label></td>
+    <td>
+      <select id="account_type" name="account_type">
+        <option value="Youth Savings">Youth Savings</option>
+        <option value="Holiday Club">Holiday Club</option>
+        <option value="Money Market">Money Market</option>
+      </select>
+    </td>
+  </tr>
+  <tr>
+    <td><label for="initial_deposit">Initial Deposit (USD)</label></td>
+    <td><input type="text" id="initial_deposit" name="initial_deposit" size="12" value="{{ initial_deposit or '' }}"></td>
+  </tr>
+  <tr>
+    <td colspan="2"><input type="submit" value="Continue"></td>
+  </tr>
+  </form>
+</table>
+<p><a href="/members/{{ m.member_id }}">Cancel and return to member detail</a></p>
+{% endblock %}

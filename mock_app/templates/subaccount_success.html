@@ -1,0 +1,15 @@
+{% extends "_layout.html" %}
+{% block body %}
+<h2 style="margin-top:0;">Sub-Account Opened</h2>
+<table width="100%" cellpadding="6" cellspacing="0" border="1" bordercolor="#227722" bgcolor="#e8fbe8">
+  <tr><td>Success. The new account has been created and funded.</td></tr>
+</table>
+<br>
+<table cellpadding="3" cellspacing="0" border="1" bordercolor="#cccccc" width="100%">
+  <tr bgcolor="#eeeeee"><td width="35%"><b>Reference Number</b></td><td>{{ ref }}</td></tr>
+  <tr><td><b>Member</b></td><td>{{ m.name }} ({{ m.member_id }})</td></tr>
+  <tr bgcolor="#eeeeee"><td><b>Account Type</b></td><td>{{ account_type }}</td></tr>
+  <tr><td><b>Initial Deposit</b></td><td>${{ "%.2f"|format(initial_deposit) }}</td></tr>
+</table>
+<p><a href="/members/{{ m.member_id }}">Return to member detail</a></p>
+{% endblock %}

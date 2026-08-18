@@ -1,0 +1,11 @@
+{% extends "_layout.html" %}
+{% block body %}
+<h2 style="margin-top:0;">System Notice</h2>
+<table width="100%" cellpadding="6" cellspacing="0" border="1" bordercolor="#996600" bgcolor="#fff2cc">
+  <tr><td>Scheduled maintenance is planned for this system tonight at 22:00 ET. Save your work before then.</td></tr>
+</table>
+<br>
+<form method="POST" action="/dismiss-notice">
+  <input type="submit" value="Continue">
+</form>
+{% endblock %}

@@ -1,0 +1,25 @@
+{% extends "_layout.html" %}
+{% block body %}
+<h2 style="margin-top:0;">Confirm Sub-Account Opening</h2>
+<table width="100%" cellpadding="6" cellspacing="0" border="1" bordercolor="#996600" bgcolor="#fff2cc">
+  <tr><td>This action opens a new account for the member and <b>cannot be undone</b>. Please review before confirming.</td></tr>
+</table>
+<br>
+<table cellpadding="3" cellspacing="0" border="1" bordercolor="#cccccc" width="100%">
+  <tr bgcolor="#eeeeee"><td width="35%"><b>Member</b></td><td>{{ m.name }} ({{ m.member_id }})</td></tr>
+  <tr><td><b>Account Type</b></td><td>{{ account_type }}</td></tr>
+  <tr bgcolor="#eeeeee"><td><b>Initial Deposit</b></td><td>${{ "%.2f"|format(initial_deposit) }}</td></tr>
+</table>
+<br>
+<table cellpadding="0" cellspacing="0" border="0">
+  <form method="POST" action="/members/{{ m.member_id }}/open-subaccount/confirm">
+    <input type="hidden" name="account_type" value="{{ account_type }}">
+    <input type="hidden" name="initial_deposit" value="{{ initial_deposit }}">
+    <tr>
+      <td><input type="submit" value="Confirm and Open Account"></td>
+      <td>&nbsp;&nbsp;</td>
+      <td><a href="/members/{{ m.member_id }}">Cancel</a></td>
+    </tr>
+  </form>
+</table>
+{% endblock %}

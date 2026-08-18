@@ -1,0 +1,18 @@
+{% extends "_layout.html" %}
+{% block body %}
+<h2 style="margin-top:0;">Member Search</h2>
+<table cellpadding="4" cellspacing="0" border="0">
+  <form method="POST" action="/search">
+  <tr>
+    <td><label for="member_id">Member ID</label></td>
+    <td><input type="text" id="member_id" name="member_id" value="{{ query or '' }}" size="20"></td>
+    <td><input type="submit" value="Search"></td>
+  </tr>
+  </form>
+</table>
+{% if not_found %}
+<p><i>No member found matching ID "{{ not_found }}". Check the ID and try again.</i></p>
+{% endif %}
+<hr>
+<p style="color:#666;">Tip for staff: member IDs are 5 digits, e.g. 10234.</p>
+{% endblock %}

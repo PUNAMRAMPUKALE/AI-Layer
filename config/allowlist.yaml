@@ -1,0 +1,42 @@
+# Guardrail policy for the agent (discovery) and replay engine.
+# Loaded by core/guardrails.py. Both discovery and replay consult this file
+# before every navigation and before every action -- there is no code path
+# that acts outside it.
+
+allowed_domains:
+  - localhost
+  - 127.0.0.1
+
+# Regex patterns matched against the URL path (not the domain -- domain is
+# checked separately via allowed_domains). A navigation/route must match at
+# least one of these to proceed.
+allowed_routes:
+  - "^/$"
+  - "^/dismiss-notice$"
+  - "^/search$"
+  - "^/members/[A-Za-z0-9_-]+$"
+  - "^/members/[A-Za-z0-9_-]+/open-subaccount$"
+  - "^/members/[A-Za-z0-9_-]+/open-subaccount/confirm$"
+
+# Explicitly denied even if an allowed_routes pattern would otherwise match.
+# The test-harness reset endpoint must never be reachable by the agent or by
+# a replayed artifact -- only run scripts call it directly over HTTP.
+blocked_route_patterns:
+  - "^/__reset$"
+
+allowed_action_types:
+  - navigate
+  - click
+  - fill
+  - select_option
+  - extract_text
+  - wait_for
+
+# Routes whose steps are classified "risky" (irreversible / write-with-
+# consequences). Risky steps are permitted during an attended discovery run
+# but BLOCKED by default during unattended replay unless the caller passes
+# allow_risky=True -- see core/guardrails.py and replay/engine.py. This is
+# the conservative default described in REPORT.md section 6 (Safety).
+risky_route_patterns:
+  - pattern: "^/members/[A-Za-z0-9_-]+/open-subaccount/confirm$"
+    reason: "Creates a new sub-account. Not reversible through this UI."
